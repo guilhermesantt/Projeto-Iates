@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens Recebidas</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+  </head>
+
+  <body>
+    <div class="page">
+    <header>
+      <div id="title">
+        <img src="images/barco1.png" alt="ícone de barco" />
+        <div class="headtitle">
+          <h1>Luxo</h1>
+          <h2>Painel de Controle</h2>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="navmenu">
+          <li><a href="index.html">Página inicial</a></li>
+          <li><a href="admin.html">Sair</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="pagtitle">
+        <div class="bgtitle"></div>
+        <h2>Mensagens Recebidas</h2>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Mensagem</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaMensagens">
+            </tbody>
+        </table>
+      </div>
+    </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        var listaMensagens = obterMensagens();
+
+        if (listaMensagens && listaMensagens.length > 0) {
+          $.each(listaMensagens, function (index, item) {
+            var novaLinha = "<tr>" +
+              "<td>" + item.nome + "</td>" +
+              "<td>" + item.email + "</td>" +
+              "<td>" + item.mensagem + "</td>" +
+              "</tr>";
+            
+            $("#tabelaMensagens").append(novaLinha);
+          });
+        } else {
+          $("#tabelaMensagens").append("<tr><td colspan='3' style='text-align:center;'>Nenhuma mensagem recebida até o momento.</td></tr>");
+        }
+      });
+    </script>
+  </body>
+</html>
